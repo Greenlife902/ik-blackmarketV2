@@ -5,8 +5,6 @@ Config = {
     MaxWeight = 120000,
     Measurement = "kg",
     RandomLocation = false,
-    RandomItem = true,
-    RandomItemAmount = 7,
     RemoveItem = false,
     UseDirtyMoney = true,
     Payment = "blackmoney",
@@ -39,25 +37,25 @@ Config.Categories = {
     smgs = {
         label = "SMGs",
         items = {
-            { name = 'weapon_microsmg', price = 150000, amount = 5 },
-            { name = 'weapon_smg', price = 160000, amount = 5 },
-            { name = 'weapon_assaultsmg', price = 170000, amount = 5 },
+            { name = 'weapon_microsmg', price = 80000, amount = 5 },
+            { name = 'weapon_smg', price = 70000, amount = 5 },
+            { name = 'weapon_assaultsmg', price = 70000, amount = 5 },
         }
     },
     rifles = {
         label = "Rifles",
         items = {
-            { name = 'weapon_assaultrifle', price = 200000, amount = 5 },
-            { name = 'weapon_carbinerifle', price = 210000, amount = 5 },
-            { name = 'weapon_advancedrifle', price = 220000, amount = 5 },
+            { name = 'weapon_assaultrifle', price = 100000, amount = 5 },
+            { name = 'weapon_carbinerifle', price = 110000, amount = 5 },
+            { name = 'weapon_advancedrifle', price = 120000, amount = 5 },
         }
     },
     shotguns = {
         label = "Shotguns",
         items = {
-            { name = 'weapon_pumpshotgun', price = 180000, amount = 5 },
-            { name = 'weapon_sawnoffshotgun', price = 190000, amount = 5 },
-            { name = 'weapon_bullpupshotgun', price = 200000, amount = 5 },
+            { name = 'weapon_pumpshotgun', price = 110000, amount = 5 },
+            { name = 'weapon_sawnoffshotgun', price = 110000, amount = 5 },
+            { name = 'weapon_bullpupshotgun', price = 100000, amount = 5 },
         }
     },
     lmgs = {
@@ -101,37 +99,23 @@ Config.Categories = {
             { name = 'exoticsalescard', price = 500, amount = 2 },
             { name = 'dice', price = 10, amount = 10 },
         }
-    },
-    methitems = {
-        label = "Meth Crafting",
-        items = {
-            { name = 'beaker', price = 50, amount = 15 },
-            { name = 'methlab', price = 250, amount = 25 },
-            { name = 'pestle_and_mortar', price = 15, amount = 15 },
-            { name = 'crushed_pseudo', price = 25, amount = 10 },
-            { name = 'red_phos', price = 45, amount = 10 },
-            { name = 'hydrochloricacid', price = 25, amount = 10 },
-            { name = 'gasmask', price = 250, amount = 50 },
-            { name = 'eggtimer', price = 15, amount = 10 },
-            { name = 'meth_testkit', price = 100, amount = 50 },
-            { name = 'lithium', price = 200, amount = 10 },
-        }
     }
 }
 
 Config.Packages = {
     ["meth_kit"] = {
         label = "Meth Starter Kit",
-        price = 1500,
-        cooldown = 1800, -- 30 minutes in seconds
+        price = 1000,
+        cooldown = 1800,
         items = {
             { name = "methlab", amount = 1 },
-            { name = "beaker", amount = 2 },
-            { name = "red_phos", amount = 5 },
-            { name = "hydrochloricacid", amount = 5 },
+            { name = "beaker", amount = 1 },
+            { name = "red_phos", amount = 2 },
+            { name = "hydrochloricacid", amount = 2 },
             { name = "pestle_and_mortar", amount = 1 },
             { name = "gasmask", amount = 1 },
-            { name = "meth_testkit", amount = 1 },
+            { name = "lithium", amount = 1 },
+            { name = "crushed_pseudo", amount = 1 },
         }
     }
 }

@@ -8,22 +8,20 @@ RegisterNetEvent('ik-blackmarket:ShopMenu', function(data)
     }
 
     for cat, category in pairs(categories) do
-        if category.label ~= "Meth Crafting" then -- Filter out the unused section
-            ShopMenu[#ShopMenu + 1] = {
-                header = category.label,
-                params = {
-                    event = "ik-blackmarket:client:OpenCategory",
-                    args = {
-                        label = category.label,
-                        items = category.items,
-                        k = data.k,
-                        l = data.l,
-                        categories = data.categories, -- pass back for navigation
-                        name = data.name
-                    }
+        ShopMenu[#ShopMenu + 1] = {
+            header = category.label,
+            params = {
+                event = "ik-blackmarket:client:OpenCategory",
+                args = {
+                    label = category.label,
+                    items = category.items,
+                    k = data.k,
+                    l = data.l,
+                    categories = data.categories,
+                    name = data.name
                 }
             }
-        end
+        }
     end
 
     for id, pkg in pairs(Config.Packages) do
@@ -88,9 +86,38 @@ RegisterNetEvent('ik-blackmarket:client:BuyPackage', function(data)
     local pkg = data.data
     local id = data.id
     local cooldown = pkg.cooldown or 0
-    local label = pkg.label or id
-
     TriggerServerEvent('ik-blackmarket:server:BuyPackage', id, pkg, cooldown)
+end)
+
+RegisterNetEvent('ik-blackmarket:Charge', function(data)
+    local item = data.item
+    local cost = data.cost
+    local amount = data.amount or 1
+    local itemLabel = QBCore.Shared.Items[item] and QBCore.Shared.Items[item].label or item
+
+    local dialog = exports['qb-input']:ShowInput({
+        header = "Purchase "..itemLabel,
+        submitText = "Buy",
+        inputs = {
+            {
+                type = "number",
+                isRequired = true,
+                name = "amount",
+                text = "How many would you like to buy?"
+            }
+        }
+    })
+
+    if dialog then
+        local buyAmount = tonumber(dialog.amount)
+        if not buyAmount or buyAmount <= 0 then
+            QBCore.Functions.Notify("Invalid amount.", "error")
+            return
+        end
+
+        TriggerServerEvent("ik-blackmarket:GetItem", buyAmount, Config.Payment, item, data.shoptable, cost, nil, data.k)
+        exports['qb-menu']:closeMenu()
+    end
 end)
 
 RegisterNetEvent('ik-blackmarket:CloseMenu', function()
